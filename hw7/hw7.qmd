@@ -1,6 +1,6 @@
 ---
 title: Homework 7 - Creating a resume database
-author: (your name goes here!)
+author: Nick Arthur
 date: last-modified
 format:
     html:
@@ -10,11 +10,9 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
+In this homeowrk assignment, we are creating a ddl file and building a database from scratch using SQL. We have a high-level diagram for our schema, the list of tables, and some sample data.
 
-(Please clean up any comments that I included.  This is a scaffold document.)
-
-GITHUB URL:  <your URL goes here!>
+GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-ncarthur>
 
 ```{python}
 #| eval: true
@@ -92,24 +90,55 @@ except Exception as e:
 
 ## Overview and description
 
-(briefly describe the project and the database)
+Ths database represents a company-wide resume capturing the collective skills and certifications of all the people in my company. The database captures skills, employees and their roles within the company. The database helps us find employees with specific skills, lists the skills of any employees and helps find gaps in the skill sets of employees in specific roles.
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+A Crows-foot diagram of the database per the specification.
 
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
-        string first_name
-        string last_name
+    PEOPLE }o--o{ PEOPLE_SKILLS : has
+    PEOPLE_SKILLS }o--o{ SKILLS : has
+    PEOPLE }o--o{ PEOPLE_ROLES : has
+    PEOPLE_ROLES }o--o{ ROLES : has
+    
+    PEOPLE{
+        int people_id
+        varchar(255) first_name
+        varchar(255) last_name
+        varchar(255) email
+        varchar(255) linkedin
+        varchar(255) headshot_url
+        varchar(255) discord
+        varchar(4096) bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+    PEOPLE_SKILLS {
+        int people_skills_id
+        int skills_id
+        int people_id
+        date date_acquired
+    }
+    SKILLS {
+        int skills_id
+        varchar(255) skills_name
+        varchar(255) description
+        varchar(255) tag
+        varchar(255) url
+        int time_commitment
+    }
+    PEOPLE_ROLES {
+        int people_roles_id
+        int people_od
+        int role_id
+        date date_assigned
+    }
+    ROLES {
+        int roles_id
+        varchar(255) roles_name
+        int roles_sort_priority
     }
 ```
 
@@ -119,7 +148,7 @@ For the people, skills, and roles tables, provide a description of each table an
 
 ### People table
 
-The *people* table contains elements that describe ... 
+The *people* table contains elements that describe people. A person has a name, a linkedin profile and a headshot. 
 
 Below is a list of data in the *people* table.
 
@@ -142,7 +171,7 @@ df
 
 ### Skills table
 
-The *skills* table contains elements that describe ... 
+The *skills* table contains elements that describe skills. Skills have a name, description, and a time required to aquire a particular skill.
 
 Below is a list of data in the *skills* table.
 
