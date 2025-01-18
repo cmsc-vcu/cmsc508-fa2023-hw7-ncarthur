@@ -1,6 +1,6 @@
 # CMSC 508 HW 7 Creating a Resume Database
 
-Welcome to the Company Resume Database GitHub repository! This project is an exciting initiative to capture and manage the collective skills and certifications of all the talented individuals in our company. It's the brainchild of our visionary sensei, and we're thrilled to bring it to life under the guidance of the legendary mentor from the Kill-Bill fame.
+Welcome to the Company Resume Database GitHub repository! This project is an exciting initiative to capture and manage the collective skills and certifications of all the talented individuals in our company. It's the brainchild of our visionary sensei, and we're thrilled to bring it to life under the guidance of the legendary mentor from the Kill-Bill fame. Very cool.
 
 ## Overview
 
